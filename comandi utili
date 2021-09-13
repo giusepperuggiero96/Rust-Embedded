@@ -1,0 +1,2 @@
+gdb-multiarch -q -x openocd.gdb target/thumbv7em-none-eabihf/release/sssi-project
+gdb-multiarch -q -x openocd.gdb target/thumbv7em-none-eabihf/debug/examples/concurrency1
