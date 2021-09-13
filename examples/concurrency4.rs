@@ -4,7 +4,13 @@
 // Esempio dimostrativo gestione della concorrenza a livello di interupt
 
 // 4 - Safe Abstractions, Send and Sync traits
-//      Rust ci permette di astrarre le nostre variabili da condividere (intrinsecamente unsafe) in interfacce safe da usare ovunque nel nostro programma. Questo design richiede che l'applicazione ci passi un token che ci assicuri di trovarci in una sezione critica, senza dover effettuare il lock in loco. Questa garanzia è fornita a tempo di compilazione e non ci sarà quindi overhead a runtime. Il tipo di dato di cui si fa uso in questa astrazione è l'UnsafeCell, uno dei pochi tipi di rust che non implementa di default il trait sync e pertanto di default non potrebbe essere condiviso da più thread. Va quindi specificato esplicitamente di voler implementare forzatamente questo trait. Questa soluzione è funzionale solo per sistemi mono-core.
+//      Rust ci permette di astrarre le nostre variabili da condividere (intrinsecamente unsafe)
+// in interfacce safe da usare ovunque nel nostro programma. Questo design richiede che l'applicazione 
+// ci passi un token che ci assicuri di trovarci in una sezione critica, senza dover effettuare il lock in
+// loco. Questa garanzia è fornita a tempo di compilazione e non ci sarà quindi overhead a runtime. Il tipo 
+// di dato di cui si fa uso in questa astrazione è l'UnsafeCell, uno dei pochi tipi di rust che non implementa
+// di default il trait sync e pertanto di default non potrebbe essere condiviso da più thread. Va quindi specificato
+// esplicitamente di voler implementare forzatamente questo trait. Questa soluzione è funzionale solo per sistemi mono-core.
 
 
     use panic_halt as _;
