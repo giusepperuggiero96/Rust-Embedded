@@ -4,7 +4,18 @@
 // Esempio dimostrativo gestione della concorrenza a livello di interupt
 
 // 5 - Mutexes (Copy trait variables, mutable and immutable peripherals)
-//      Un mutex in generale assicura accesso esclusivo a una variabile. In generale l'utilizzo dei mutex per la sincronizzazione con gli interrupt handler non è accettato perchè potrebbe facilmente portare a situazioni di deadlock. Se infatti l'handler fosse in attesa di un lock da parte del main, non ci sarebbe modo per quest'ultimo di rilasciarglielo, dato che non eseguirebbe mai. Per evitare ciò si utilizza un mutex che richiede una sezione critica per bloccarsi. Tale sezione critica deve durare almeno tanto a lungo quanto il lock. I tipi accettati dal mutex in generale sono Cell e RefCell, che forniscono implementazioni safe della interiot mutability. Il tipo Cell è utilizzato per variabili che implementano il tratto Copy (tipi semplici), mentre per tipi composti (come ad esempio una periferica) si utilizza la RefCell, che a runtime riesce a controllare che venga fornito un solo riferimento per la periferica in questione.
+//      Un mutex in generale assicura accesso esclusivo a una variabile. 
+// In generale l'utilizzo dei mutex per la sincronizzazione con gli interrupt
+// handler non è accettato perchè potrebbe facilmente portare a situazioni di 
+// deadlock. Se infatti l'handler fosse in attesa di un lock da parte del main,
+// non ci sarebbe modo per quest'ultimo di rilasciarglielo, dato che non eseguirebbe 
+// mai. Per evitare ciò si utilizza un mutex che richiede una sezione critica per 
+// bloccarsi. Tale sezione critica deve durare almeno tanto a lungo quanto il lock.
+// I tipi accettati dal mutex in generale sono Cell e RefCell, che forniscono 
+// implementazioni safe della interiot mutability. Il tipo Cell è utilizzato per
+// variabili che implementano il tratto Copy (tipi semplici), mentre per tipi composti 
+// (come ad esempio una periferica) si utilizza la RefCell, che a runtime riesce a
+// controllare che venga fornito un solo riferimento per la periferica in questione.
 
     use panic_halt as _;
 
